@@ -1,6 +1,7 @@
 # programming
 android-studio
 neovim
+code
 
 # utilities
 ripgrep
@@ -8,9 +9,11 @@ btop
 github-cli
 yt-dlp
 rtorrent
+aria2
 stow
 reflector
 fzf
+tree
 
 # virtual machine
 qemu-full
@@ -27,6 +30,7 @@ wine-gecko
 wine-mono
 winetricks
 
-# applications
+# media applications
 vlc
 pix
+dolphin

@@ -68,10 +68,10 @@ fi
 pacstrap /mnt base base-devel linux linux-firmware sof-firmware intel-ucode grub efibootmgr sudo networkmanager git neovim man-db --needed
 
 # Generate fstab
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >>/mnt/etc/fstab
 
 # Create a post-install script to be performed by arch-chroot
-cat <<EOF_CHROOT > /mnt/root/chroot_script.sh
+cat <<EOF_CHROOT >/mnt/root/chroot_script.sh
 #!/bin/bash
 set -e
 
@@ -114,14 +114,14 @@ EOF_CHROOT
 
 # Append additional commands to chroot_script.sh to clone and install HyDE if the user input is 2
 if [ "$TYPE" == "2" ]; then
-    echo "su - $USERNAME" >> /root/chroot_script.sh
-    echo "git clone --depth 1 https://github.com/tryprncp/hyprdots HyDE && ./HyDE/Scripts/install.sh" >> /root/chroot_script.sh
+    echo "su - $USERNAME" >>/root/chroot_script.sh
+    echo "git clone --depth 1 https://github.com/tryprncp/hyprdots HyDE && ./HyDE/Scripts/install.sh" >>/root/chroot_script.sh
 fi
 
 # Append additional commands to chroot_script.sh to clone and install i3WM if the user input is 3
 if [ "$TYPE" == "3" ]; then
-    echo "su - $USERNAME" >> /root/chroot_script.sh
-    echo "git clone --depth 1 https://github.com/tryprncp/i3WM && ./i3WM/Scripts/install.sh" >> /root/chroot_script.sh
+    echo "su - $USERNAME" >>/root/chroot_script.sh
+    echo "git clone --depth 1 https://github.com/tryprncp/i3WM && ./i3WM/Scripts/install.sh" >>/root/chroot_script.sh
 fi
 
 # Execute the script using arch-chroot and remove it afterwards

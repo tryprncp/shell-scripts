@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-from time import sleep
 
 ascii_art = """
  _    ,                                          _
@@ -40,22 +39,19 @@ def get_url():
         return link
     else:
         cowsaid("Invalid URL!")
-        sleep(1)
         return get_url()
 
 
 def download_format():
     cowsaid(
         "\nChoose download format\n"
-        "(1) Download YouTube video in .mp3 format\n"
-        "(2) Download YouTube video in .webm format\n"
+        "(1) Download in .mp3 format\n"
+        "(2) Download in .webm format\n"
     )
     choice = input("\nEnter the number corresponding to your choice: ")
     if choice == "1" or choice == "2":
         return choice
     else:
-        cowsaid("Invalid input!")
-        sleep(1)
         return download_format()
 
 
@@ -82,8 +78,6 @@ def download_quality():
         case '5':
             return '2160'
         case _:
-            cowsaid("\nInvalid input!\n")
-            sleep(1)
             return download_quality()
 
 

@@ -51,17 +51,17 @@ else
 fi
 
 # Create partitions and format partitions
-if [ ! -e /dev/${PART}1 ]; then
-    parted /dev/$DISK --script mklabel gpt
-    parted /dev/$DISK --script mkpart primary fat32 1MiB 500MiB
-    parted /dev/$DISK --script set 1 esp on
-    parted /dev/$DISK --script mkpart primary ext4 500MiB 100%
+if [ ! -e /dev/"${PART}"1 ]; then
+    parted /dev/"$DISK" --script mklabel gpt
+    parted /dev/"$DISK" --script mkpart primary fat32 1MiB 500MiB
+    parted /dev/"$DISK" --script set 1 esp on
+    parted /dev/"$DISK" --script mkpart primary ext4 500MiB 100%
     # Format partition 1 to fat32 filesystem
-    mkfs.fat -F 32 /dev/${PART}1
+    mkfs.fat -F 32 /dev/"${PART}"1
     # Format partition 2 to ext4 filesystem
-    mkfs.ext4 /dev/${PART}2
+    mkfs.ext4 /dev/"${PART}"2
     # Mount partition 2
-    mount /dev/${PART}2 /mnt
+    mount /dev/"${PART}"2 /mnt
 fi
 
 # Install essential packages using pacstrap

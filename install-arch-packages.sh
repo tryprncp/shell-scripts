@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat << "EOF"
+cat <<"EOF"
 
 ╭━━╮╱╱╱╱╱╭╮╱╱╱╭╮╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱
 ╰┫┣╯╱╱╱╱╭╯╰╮╱╱┃┃┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱
@@ -14,6 +14,13 @@ cat << "EOF"
 EOF
 
 sleep 1
+
+# Install yay if not yet installed
+if ! command -v yay &>/dev/null; then
+    echo "Installing yay..."
+    git clone https://aur.archlinux.org/yay.git ~/ && cd ~/yay && makepkg -si --noconfirm
+    echo "yay has been installed successfully."
+fi
 
 # Define pkg_installed function
 pkg_installed() {
@@ -86,4 +93,3 @@ fi
 if [[ ${#aurhPkg[@]} -gt 0 ]]; then
     "${scrDir}/install_aur.sh" "${getAur}" ${use_default} -S "${aurhPkg[@]}"
 fi
-

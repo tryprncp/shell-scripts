@@ -15,6 +15,15 @@ reflector
 fzf
 tree
 
+# cli cool stuff
+cowsay
+lolcat
+sl
+cava
+cbonsai
+pipes.sh
+figlet
+
 # virtual machine
 qemu-full
 virt-manager
@@ -25,10 +34,10 @@ bridge-utils
 openbsd-netcat
 
 # wine
-wine
-wine-gecko
-wine-mono
-winetricks
+#wine
+#wine-gecko
+#wine-mono
+#winetricks
 
 # media applications
 vlc

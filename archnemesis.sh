@@ -27,9 +27,9 @@ else
 fi
 
 # Remove existing partitions in the disk
-for PART_NUM in $(parted "$DISK" --script print | awk '/^ / {print $1}')
+for PART_NUM in $(parted /dev/"$DISK" --script print | awk '/^ / {print $1}')
 do
-  parted "$DISK" --script rm "$PART_NUM"
+  parted /dev/"$DISK" --script rm "$PART_NUM"
 done
 
 # Create partitions and format the partitions
@@ -42,8 +42,7 @@ mkfs.fat -F 32 /dev/"${PART}"1
 # Format partition 2 to ext4 filesystem
 mkfs.ext4 /dev/"${PART}"2
 
-# Mount the partitions
-mount --mkdir /dev/${PART}1 /boot/efi
+# Mount the root partition
 mount /dev/"${PART}"2 /mnt
 
 # Initialize pacman-key
@@ -90,6 +89,7 @@ cat <<HOSTS > /etc/hosts
 HOSTS
 
 # Install grub on partition 1
+mount --mkdir /dev/${PART}1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 

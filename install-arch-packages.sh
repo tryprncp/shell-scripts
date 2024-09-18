@@ -91,5 +91,5 @@ if [[ ${#archPkg[@]} -gt 0 ]]; then
 fi
 
 if [[ ${#aurhPkg[@]} -gt 0 ]]; then
-    "${scrDir}/install_aur.sh" "${getAur}" ${use_default} -S "${aurhPkg[@]}"
+    "${aurhlpr}" ${use_default} -S "${aurhPkg[@]}"
 fi
